@@ -1,0 +1,58 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to Jenga App</title>
+	 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+	 <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet"> 
+	 <link rel="stylesheet" type="text/css" href="{% static '/main.css' %}">
+</head>
+<body class="w3-pale-green">
+	<!--<nav class="w3-black">
+		<a href="#" class="w3-bar-item w3-button">Home</a> 
+		<a href="#" class="w3-bar-item w3-button">Login</a>
+	</nav>-->
+	<div class="w3-black w3-center">
+			<h1 class="head">Jenga app</h1>
+	</div>
+
+	<div class="w3-border w3-round-xlarge w3-center formD">
+		<div>
+			<h3>Login to use the app</h3>
+		</div>
+
+		<div class="w3-contianer">
+			{% if form.non_field_errors %}
+    			<ul class='form-errors'>
+        		{% for error in form.non_field_errors %}
+           			 <li>{{ error }}</li>
+       			 {% endfor %}
+    				</ul>
+   			 {% endif %}
+   			 <div class="w3-contianer">
+				<form action="{% url 'login' %}" method="POST">
+				
+					<input type="text" name="username" placeholder="Username"/><br>
+				
+					<br>
+					<input type="password" name="password" placeholder="Password"/><br>
+				
+					<br>
+					<button class="w3-btn w3-grey  w3-round-xlarge mybtn">LOGIN</button>
+					{% csrf_token %}
+				</form>
+				OR<br>
+				<a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+			</div>
+		</div>
+
+		<div class="message">
+			<p>Not Registred? </p> <a href="#">Sign up Here</a>
+		</div>
+	</div>
+
+	
+	
+</body>
+</html>
