@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'd1wyz0%muu)08@j!opy7&aqiopnxw!^*vwr9(98h&til9zy$mi'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,8 +42,9 @@ INSTALLED_APPS = [
     'coreU',
 ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = '347370839010972'
-SOCIAL_AUTH_FACEBOOK_SECRET = '328ff5df44e9b2f55d70ecf8bf436f16'
+SOCIAL_AUTH_FACEBOOK_KEY = config('FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = config('FACEBOOK_SECRET')
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,7 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                 'social_django.context_processors.backends',  
+                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
         },
